@@ -1,16 +1,23 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>WildWork: Ethical Wildlife Volunteering in Southern Africa</title>
 <style>
-body{font-family:system-ui,sans-serif;margin:0;background:#f6f3ec;color:#222}header{background:#2f4a2f;color:#fff;padding:28px 20px}
-header h1{margin:0;font-size:28px}header p{margin:6px 0 0;opacity:.9}main{max-width:1100px;margin:auto;padding:20px}
-.filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}select,input{padding:8px;border:1px solid #bbb;border-radius:6px;font-size:14px}
+:root{--green:#2F4F3A;--ochre:#C8892E;--ochre-text:#8A5A14;--sand:#F3E9D7;--char:#2B2B2B;--card:#FFFFFF}
+body{font-family:system-ui,sans-serif;margin:0;background:var(--sand);color:var(--char)}
+header{background:var(--green);color:#fff;padding:28px 20px;border-bottom:5px solid var(--ochre)}
+header h1{margin:0;font-size:28px}header p{margin:6px 0 0}main{max-width:1100px;margin:auto;padding:20px}
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+select,input{padding:8px;border:1px solid #8C7B62;border-radius:6px;font-size:14px;background:#fff;color:var(--char)}
+select:focus,input:focus{outline:3px solid var(--ochre);outline-offset:1px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
-.card{background:#fff;border-radius:10px;padding:14px;box-shadow:0 1px 3px #0002}.card h4{margin:0 0 4px}
-.meta{font-size:13px;color:#555}.g{float:right;font-weight:700;border-radius:6px;padding:3px 9px;color:#fff}
-.gA{background:#2e7d32}.gB{background:#7cb342}.gC{background:#f9a825}.gD{background:#c62828}
-.note{font-size:13px;margin:8px 0}a{color:#2f4a2f}.signup{background:#e3ead9;padding:18px;border-radius:10px;margin:24px 0}
-.signup input{width:240px}button{background:#2f4a2f;color:#fff;border:0;padding:9px 14px;border-radius:6px;cursor:pointer}
-#count{font-size:14px;color:#555;margin-bottom:10px}.rubric{background:#fff;padding:16px;border-radius:10px;margin-top:24px}
+.card{background:var(--card);border-radius:10px;padding:14px;box-shadow:0 1px 3px #0002;border-top:4px solid var(--green)}
+.card h4{margin:0 0 4px;color:var(--green)}.meta{font-size:13px;color:#5A5248}
+.g{float:right;font-weight:700;border-radius:6px;padding:3px 9px}
+.gA{background:#2F4F3A;color:#fff}.gB{background:#5A7A2E;color:#fff}.gC{background:#E8B04B;color:#2B2B2B}.gD{background:#A3322A;color:#fff}
+.featured{background:var(--ochre);color:var(--char);font-weight:700;border-radius:6px;padding:2px 8px;font-size:12px}
+.note{font-size:13px;margin:8px 0}a{color:var(--green);font-weight:600}a:hover,a:focus{color:var(--ochre-text);text-decoration-color:var(--ochre)}
+.signup{background:#fff;border-left:6px solid var(--ochre);padding:18px;border-radius:10px;margin:24px 0}.signup h3{color:var(--green)}
+button{background:var(--green);color:#fff;border:0;padding:9px 14px;border-radius:6px;cursor:pointer}button:hover{background:#243D2D}
+#count{font-size:14px;color:#5A5248;margin-bottom:10px}.rubric{background:#fff;padding:16px;border-radius:10px;margin-top:24px}.rubric h2,.rubric h3{color:var(--green)}
 </style></head><body>
 <header><h1>WildWork 🐘 Southern Africa</h1><p>Every wildlife volunteering program in South Africa, Namibia and Botswana, with an honest ethics grade. No cub petting. No lion walks.</p></header>
 <main>
