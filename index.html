@@ -18,8 +18,22 @@ select:focus,input:focus{outline:3px solid var(--ochre);outline-offset:1px}
 .signup{background:#fff;border-left:6px solid var(--ochre);padding:18px;border-radius:10px;margin:24px 0}.signup h3{color:var(--green)}
 button{background:var(--green);color:#fff;border:0;padding:9px 14px;border-radius:6px;cursor:pointer}button:hover{background:#243D2D}
 #count{font-size:14px;color:#5A5248;margin-bottom:10px}.rubric{background:#fff;padding:16px;border-radius:10px;margin-top:24px}.rubric h2,.rubric h3{color:var(--green)}
+
+.site-nav{background:var(--char);position:sticky;top:0;z-index:10}
+.site-nav .in{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:10px 20px}
+.site-nav .brand{color:#fff;text-decoration:none;font-weight:800;font-size:18px}
+.site-nav ul{list-style:none;margin:0;padding:0;display:flex;gap:18px}
+.site-nav ul a{color:var(--sand);text-decoration:none;font-weight:600}
+.site-nav ul a:hover,.site-nav ul a:focus,.site-nav ul a[aria-current]{color:var(--ochre)}
+.nav-toggle{display:none;background:none;border:1px solid var(--sand);color:var(--sand);padding:6px 10px}
+@media(max-width:700px){.nav-toggle{display:block}.site-nav ul{display:none;position:absolute;left:0;right:0;top:100%;background:var(--char);flex-direction:column;padding:10px 20px 16px;gap:12px}.site-nav ul.open{display:flex}}
+.site-footer{background:var(--green);color:var(--sand);margin-top:40px;border-top:5px solid var(--ochre)}
+.site-footer .in{max-width:1100px;margin:auto;padding:24px 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;font-size:14px}
+.site-footer a{color:#fff}.site-footer h4{margin:0 0 8px;color:var(--ochre)}.site-footer ul{list-style:none;padding:0;margin:0;line-height:1.9}
+.site-footer .copy{max-width:1100px;margin:auto;padding:0 20px 20px;font-size:13px;opacity:.85}
+.page{background:#fff;border-radius:10px;padding:22px;line-height:1.6;max-width:820px;margin:auto}.page h2,.page h3{color:var(--green)}
 </style></head><body>
-<header><h1>WildWork 🐘 Southern Africa</h1><p>Every wildlife volunteering program in South Africa, Namibia and Botswana, with an honest ethics grade. No cub petting. No lion walks.</p></header>
+<nav class="site-nav" aria-label="Main"><div class="in"><a class="brand" href="index.html">WildWork</a><button class="nav-toggle" aria-expanded="false" aria-controls="navlist" onclick="var u=document.getElementById('navlist');var o=u.classList.toggle('open');this.setAttribute('aria-expanded',o)">Menu ☰</button><ul id="navlist"><li><a href="index.html" aria-current="page">Directory</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="index.html#newsletter">Newsletter</a></li></ul></div></nav><header><h1>WildWork 🐘 Southern Africa</h1><p>Every wildlife volunteering program in South Africa, Namibia and Botswana, with an honest ethics grade. No cub petting. No lion walks.</p></header>
 <main>
 <div class="filters">
 <input id="q" placeholder="Search species, place, org…">
@@ -72,4 +86,9 @@ grid.innerHTML=f.map(x=>`<div class="card"><span class="g g${x.grade}">${x.grade
 <div class="note"><b>Focus:</b> ${x.focus}<br><b>Price:</b> ${x.price}<br><b>Stay:</b> ${x.duration}</div><div class="note">${x.note}</div>
 <a href="${x.url}" target="_blank" rel="noopener nofollow">View program →</a> <span class="meta">· checked ${x.checked}</span></div>`).join('')}
 ['q','country','grade','dur'].forEach(i=>document.getElementById(i).addEventListener('input',r));r();
-</script></body></html>
+</script><footer class="site-footer"><div class="in">
+<div><h4>WildWork</h4><p>An independent directory of ethical wildlife volunteering in South Africa, Namibia and Botswana, with an honest ethics grade for every listing.</p></div>
+<div><h4>Explore</h4><ul><li><a href="index.html">Directory</a></li><li><a href="index.html#rubric">Ethics rubric</a></li><li><a href="index.html#newsletter">Newsletter</a></li><li><a href="about.html">About</a></li></ul></div>
+<div><h4>Contact &amp; legal</h4><ul><li><a href="contact.html">Contact us</a></li><li><a href="privacy.html">Privacy policy</a></li><li><a href="terms.html">Terms of use</a></li></ul></div>
+<div><h4>Honesty note</h4><p>Featured listings are paid and always labelled "Featured". Paying never changes a grade. Affiliate links are labelled.</p></div>
+</div><div class="copy">© 2026 WildWork. Always confirm details directly with each program before booking.</div></footer></body></html>
