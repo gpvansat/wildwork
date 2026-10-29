@@ -38,6 +38,16 @@ button{background:var(--green);color:#fff;border:0;padding:9px 14px;border-radiu
 .stat{background:#fff;border-radius:10px;padding:12px;text-align:center;border-bottom:4px solid var(--ochre)}.stat b{display:block;font-size:26px;color:var(--green)}.stat span{font-size:13px;color:#5A5248}
 .signup ul{margin:8px 0 12px;padding-left:20px}.sample{background:var(--sand);border-radius:8px;padding:12px 14px;margin-top:14px;font-size:14px}.sample h4{margin:0 0 6px;color:var(--green)}
 .foot-cta{display:inline-block;margin-top:6px;background:var(--ochre);color:var(--char)!important;padding:7px 12px;border-radius:6px;text-decoration:none}
+.card{display:flex;flex-direction:column;gap:8px}.card .top{display:flex;gap:10px;align-items:flex-start}
+.card .g{float:none;flex:0 0 auto;font-size:20px;padding:6px 12px}.card h4{margin:0;font-size:17px}
+.gmean{font-size:13px;font-weight:600;padding:6px 10px;border-radius:6px;background:var(--sand)}
+.facts{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;font-size:14px;margin:0}.facts dt{font-weight:700;color:var(--green)}.facts dd{margin:0}
+.why{font-size:14px;border-left:4px solid var(--ochre);padding:4px 10px;background:#FBF6EC}
+.card details{font-size:13px;color:#5A5248}.card summary{cursor:pointer;color:var(--green);font-weight:600}
+.cta{display:inline-block;background:var(--green);color:#fff!important;padding:8px 12px;border-radius:6px;text-decoration:none;margin-top:auto;align-self:flex-start}.cta:hover,.cta:focus{background:#243D2D}
+.card.is-featured{border-top-color:var(--ochre);box-shadow:0 0 0 2px var(--ochre)}.aff{font-size:12px;color:#5A5248}
+.labels{display:flex;gap:6px;flex-wrap:wrap}
+@media(max-width:400px){.grid{grid-template-columns:1fr}.facts{grid-template-columns:1fr}.facts dt{margin-top:4px}}
 </style></head><body>
 <nav class="site-nav" aria-label="Main"><div class="in"><a class="brand" href="index.html">WildWork</a><button class="nav-toggle" aria-expanded="false" aria-controls="navlist" onclick="var u=document.getElementById('navlist');var o=u.classList.toggle('open');this.setAttribute('aria-expanded',o)">Menu ☰</button><ul id="navlist"><li><a href="index.html" aria-current="page">Directory</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="index.html#newsletter">Newsletter</a></li></ul></div></nav><header><h1>WildWork 🐘 Southern Africa</h1><p>Every wildlife volunteering program in South Africa, Namibia and Botswana, with an honest ethics grade. No cub petting. No lion walks.</p><a class="hero-cta" href="#newsletter">Get the free weekly openings email →</a></header>
 <main>
@@ -99,9 +109,16 @@ function minw(d){const m=d.match(/(\d+)/);return m?+m[1]:1}
 function r(){const q=document.getElementById('q').value.toLowerCase(),c=country.value,g=grade.value,du=dur.value;
 const f=D.filter(x=>(!q||JSON.stringify(x).toLowerCase().includes(q))&&(!c||x.country.includes(c))&&(!g||x.grade==g)&&(!du||(du=='4'?minw(x.duration)>=4:minw(x.duration)<=+du)));
 document.getElementById('count').textContent=f.length+' of '+D.length+' programs';
-grid.innerHTML=f.map(x=>`<div class="card"><span class="g g${x.grade}">${x.grade}</span><h4>${x.name}</h4><div class="meta">${x.org} · ${x.country} · ${x.region}</div>
-<div class="note"><b>Focus:</b> ${x.focus}<br><b>Price:</b> ${x.price}<br><b>Stay:</b> ${x.duration}</div><div class="note">${x.note}</div>
-<a href="${x.url}" target="_blank" rel="noopener nofollow">View program →</a> <span class="meta">· checked ${x.checked}</span></div>`).join('')}
+const GM={A:'A: Wild and hands-off. Work with free-roaming animals, no touching.',B:'B: Responsible captive care or rehab, minimal handling.',C:'C: Hands-on care. Check before booking.',D:'D: Serious concerns. Listed for transparency only.'};
+const fd=d=>{const p=d.split('-');return p.length==3?new Date(Date.UTC(+p[0],+p[1]-1,+p[2])).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'}):d};
+grid.innerHTML=f.map(x=>`<div class="card${x.featured?' is-featured':''}"><div class="labels">${x.featured?'<span class="featured">Featured (paid)</span>':''}${x.affiliate?'<span class="featured" style="background:var(--sand)">Affiliate link</span>':''}</div>
+<div class="top"><span class="g g${x.grade}" aria-label="Grade ${x.grade}">${x.grade}</span><div><h4>${x.name}</h4><div class="meta">${x.org}</div></div></div>
+<div class="gmean">${GM[x.grade]||''}</div>
+<dl class="facts"><dt>Where</dt><dd>${x.region}, ${x.country}</dd><dt>Activities</dt><dd>${x.focus}</dd><dt>Stay</dt><dd>${x.duration}</dd><dt>Price</dt><dd>${x.price}${x.included?'<br><span class="meta">Includes: '+x.included+'</span>':''}</dd></dl>
+<div class="why"><b>Why grade ${x.grade}:</b> ${x.note}</div>
+<details><summary>How we checked this</summary><p>${/index/i.test(x.verify)?'Checked against the program\'s own website listing':'Checked on the program\'s own website'}, ${fd(x.checked)}. Prices and dates change, so always confirm with the program. See the <a href="#rubric">grading rubric</a>.</p></details>
+<a class="cta" href="${x.url}" target="_blank" rel="noopener nofollow${x.affiliate?' sponsored':''}">Visit the program's own page →</a>${x.affiliate?'<span class="aff">We may earn a commission if you book via this link.</span>':''}
+<div class="meta">Checked ${fd(x.checked)}</div></div>`).join('')}
 ['q','country','grade','dur'].forEach(i=>document.getElementById(i).addEventListener('input',r));r();
 </script><footer class="site-footer"><div class="in">
 <div><h4>WildWork</h4><p>An independent directory of ethical wildlife volunteering in South Africa, Namibia and Botswana, with an honest ethics grade for every listing.</p></div>
